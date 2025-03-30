@@ -7,10 +7,29 @@
     --char-index: 0;
 }
 
+@font-face {
+    font-family: 'KlesiReg';
+    src: url('fonts/Kelsi-Regular.otf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'KlesiFill';
+    src: url('fonts/Kelsi-fill.otf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Philly';
+    src: url('fonts/PhillySans.otf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body.macchiato {
     --bg-color: #e0e0e0;
     --text-color: #333;
-    --header-bg: rgba(224, 224, 224, 0.8);
+    --header-bg: rgba(215, 213, 213, 0.8);
     --nav-link-hover: #b8860b;
     --card-bg: #f5f5f5;
 }
@@ -128,15 +147,13 @@ header {
 }
 
 .rotating-text .char {
+    letter-spacing: .15rem;
+    font-family: 'Philly', sans-serif;
     margin-bottom: 8px;
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 40px;
     color: var(--text-color);
     margin: 0;
-    font-family: "Sour Gummy", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: italic;
     font-variation-settings: "wdth" 500;
     display: inline-block;
     animation: rotate 9s ease-in-out infinite;
