@@ -30,7 +30,7 @@ body.macchiato {
     --bg-color: #e0e0e0;
     --text-color: #333;
     --header-bg: rgba(215, 213, 213, 0.8);
-    --nav-link-hover: #b8860b;
+    --nav-link-hover: #79b80b;
     --card-bg: #f5f5f5;
 }
 
@@ -173,4 +173,52 @@ header {
         transform: rotateY(720deg);
         opacity: 1;
     }
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button */
+.dropbtn {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position below the button */
+    left: 0;
+    background-color: var(--header-bg);
+    min-width: 150px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 1;
+}
+
+/* Dropdown links */
+.dropdown-content a {
+    color: var(--text-color);
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Hover effect for dropdown links */
+.dropdown-content a:hover {
+    /*background-color: var(--nav-link-hover);*/
+    background-color: var(--card-bg);
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
 }
