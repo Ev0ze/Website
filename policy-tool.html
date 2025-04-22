@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Policy Tool - Ev0ze.dev</title>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+    <link href="https://unpkg.com/splitting/dist/splitting.css" rel="stylesheet">
+</head>
+<body class="mocha">
+<header>
+    <div class="nav-left">
+        <div class="dropdown">
+            <button class="dropbtn">Menu &#9662;</button>
+            <div class="dropdown-content">
+                <a href="index.html">Home</a>
+                <a href="#projects">Projects</a>
+                <a href="#about">About</a>
+                <a href="policy-tool.html">Policy Tool</a>
+            </div>
+        </div>
+    </div>
+    <div class="nav-center">
+        <span class="rotating-text" data-splitting>evoze.dev</span>
+    </div>
+    <div class="nav-right">
+        <button id="themeSwitcher" onclick="switchTheme()">Light</button>
+    </div>
+</header>
+<main id="policy-tool" class="content">
+    <div class="card">
+        <h1>Policy Password Tool</h1>
+        <p><i>This tool should not be used for illegal activity. By using this tool, you acknowledge that you are legally allowed to extract the password(s) in question.</i></p>
+
+        <div class="tool-container">
+            <div class="upload-section">
+                <h3>Upload Chrome Net Export Log</h3>
+                <input type="file" id="export" class="file-input" />
+            </div>
+
+            <div class="results-section">
+                <h3>Results</h3>
+                <div class="table-container">
+                    <table id="output-networks">
+                        <tr>
+                            <th>SSID</th>
+                            <th>Credentials</th>
+                            <th>Security</th>
+                            <th>HiddenSSID</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="log-section">
+                <h3>Log</h3>
+                <div id="log" class="log-container"></div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h2>How to use</h2>
+            <ol>
+                <li>Visit <code>chrome://net-export</code></li>
+                <li>In "OPTIONS" set "Include raw bytes"</li>
+                <li>Click "Start Logging to Disk"</li>
+                <li>Visit <code>chrome://policy</code></li>
+                <li>Click "Reload policies"</li>
+                <li>Go back to <code>chrome://net-export</code> and click "Stop logging"</li>
+                <li>Upload the saved file here</li>
+            </ol>
+        </div>
+    </div>
+</main>
+<script src="script.js"></script>
+<script src="policy-tool.js"></script>
+</body>
+</html>
