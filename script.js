@@ -32,39 +32,98 @@ document.addEventListener("DOMContentLoaded", function () {
 
     dropdowns.forEach(dropdown => {
         let timeoutId;
+        let isOpen = false;
         const dropdownContent = dropdown.querySelector('.dropdown-content');
+        const dropdownButton = dropdown.querySelector('.dropbtn');
 
-        // When mouse enters the dropdown
-        dropdown.addEventListener('mouseenter', () => {
+        // Function to show dropdown
+        const showDropdown = () => {
             clearTimeout(timeoutId);
             dropdownContent.style.visibility = 'visible';
             dropdownContent.style.opacity = '1';
             dropdownContent.style.transform = 'translateY(0)';
             dropdownContent.style.transitionDelay = '0s';
+        };
+
+        // Function to hide dropdown
+        const hideDropdown = () => {
+            dropdownContent.style.visibility = 'hidden';
+            dropdownContent.style.opacity = '0';
+            dropdownContent.style.transform = 'translateY(-10px)';
+            isOpen = false;
+            dropdown.classList.remove('active');
+        };
+
+        // Function to toggle active state
+        const toggleActive = (active) => {
+            if (active) {
+                dropdown.classList.add('active');
+            } else {
+                dropdown.classList.remove('active');
+            }
+        };
+
+        // When mouse enters the dropdown
+        dropdown.addEventListener('mouseenter', () => {
+            if (!isOpen) {
+                showDropdown();
+            }
         });
 
         // When mouse leaves the dropdown
         dropdown.addEventListener('mouseleave', () => {
             // Set a timeout to hide the dropdown after a delay
-            timeoutId = setTimeout(() => {
-                dropdownContent.style.visibility = 'hidden';
-                dropdownContent.style.opacity = '0';
-                dropdownContent.style.transform = 'translateY(-10px)';
-            }, 800); // 800ms delay before hiding
+            if (!isOpen) {
+                timeoutId = setTimeout(() => {
+                    hideDropdown();
+                }, 800); // 800ms delay before hiding
+            }
         });
 
         // When mouse enters the dropdown content
         dropdownContent.addEventListener('mouseenter', () => {
-            clearTimeout(timeoutId);
+            if (!isOpen) {
+                clearTimeout(timeoutId);
+            }
         });
 
         // When mouse leaves the dropdown content
         dropdownContent.addEventListener('mouseleave', () => {
-            timeoutId = setTimeout(() => {
-                dropdownContent.style.visibility = 'hidden';
-                dropdownContent.style.opacity = '0';
-                dropdownContent.style.transform = 'translateY(-10px)';
-            }, 500); // 500ms delay before hiding when leaving the content
+            if (!isOpen) {
+                timeoutId = setTimeout(() => {
+                    hideDropdown();
+                }, 500); // 500ms delay before hiding when leaving the content
+            }
+        });
+
+        // Toggle dropdown on button click
+        dropdownButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (isOpen) {
+                // If already open, close it
+                hideDropdown();
+                toggleActive(false);
+            } else {
+                // If closed, open it and set a longer timeout
+                showDropdown();
+                isOpen = true;
+                toggleActive(true);
+
+                // Auto-close after 3 seconds
+                timeoutId = setTimeout(() => {
+                    hideDropdown();
+                    toggleActive(false);
+                }, 3000); // 3 seconds
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (isOpen && !dropdown.contains(e.target)) {
+                hideDropdown();
+            }
         });
     });
 });
