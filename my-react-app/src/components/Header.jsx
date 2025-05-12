@@ -4,8 +4,18 @@ import Splitting from 'splitting';
 import 'splitting/dist/splitting.css';
 
 function Header() {
-  const [theme, setTheme] = useState('mocha');
+  const [theme, setTheme] = useState('macchiato');
+  const [isChanging, setIsChanging] = useState(false);
   const textRef = useRef(null);
+  const themeButtonRef = useRef(null);
+
+  // Catppuccin themes
+  const themes = [
+    { id: 'latte', name: 'Latte', emoji: '🥛' },
+    { id: 'frappe', name: 'Frappe', emoji: '🧋' },
+    { id: 'macchiato', name: 'Macchiato', emoji: '☕' },
+    { id: 'mocha', name: 'Mocha', emoji: '🍫' }
+  ];
 
   // Initialize Splitting.js
   useEffect(() => {
@@ -173,12 +183,31 @@ function Header() {
     });
   }, []);
 
-  const switchTheme = () => {
-    const newTheme = theme === "macchiato" ? "mocha" : "macchiato";
-    setTheme(newTheme);
+  const cycleTheme = () => {
+    // Get current theme index
+    const currentIndex = themes.findIndex(t => t.id === theme);
+    // Get next theme index (or loop back to 0)
+    const nextIndex = (currentIndex + 1) % themes.length;
+    // Get next theme
+    const nextTheme = themes[nextIndex].id;
+    
+    // Remove current theme class
     document.body.classList.remove(theme);
-    document.body.classList.add(newTheme);
+    // Add new theme class
+    document.body.classList.add(nextTheme);
+    // Update state
+    setTheme(nextTheme);
+    
+    // Add animation class
+    setIsChanging(true);
+    // Remove animation class after animation completes
+    setTimeout(() => {
+      setIsChanging(false);
+    }, 500);
   };
+
+  // Find current theme data
+  const currentTheme = themes.find(t => t.id === theme) || themes[2]; // Default to Macchiato
 
   return (
     <header>
@@ -198,8 +227,12 @@ function Header() {
         <span className="rotating-text" ref={textRef} data-splitting>evoze.dev</span>
       </div>
       <div className="nav-right">
-        <button id="themeSwitcher" onClick={switchTheme}>
-          {theme === "mocha" ? "Light" : "Dark"}
+        <button 
+          ref={themeButtonRef}
+          onClick={cycleTheme} 
+          className={`theme-btn ${isChanging ? 'changing' : ''}`}
+        >
+          {currentTheme.emoji} {currentTheme.name}
         </button>
       </div>
     </header>
