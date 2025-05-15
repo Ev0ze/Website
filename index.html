@@ -1,44 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ev0ze.dev</title>
-    <link rel="stylesheet" href="style.css"/>
-    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
-    <link href="https://unpkg.com/splitting/dist/splitting.css" rel="stylesheet">
-</head>
-<body class="mocha">
-<header>
-    <div class="nav-left">
-        <div class="dropdown">
-            <button class="dropbtn">Menu <span class="dropdown-icon">&#9662;</span></button>
-            <div class="dropdown-content">
-                <a href="index.html">Home</a>
-                <a href="#projects">Projects</a>
-                <a href="#about">About</a>
-                <a href="policy-tool.html">Policy Tool</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </div>
-    </div>
-    <div class="nav-center">
-        <span class="rotating-text" data-splitting>evoze.dev</span>
-    </div>
-    <div class="nav-right">
-        <button id="themeSwitcher" onclick="switchTheme()">Light</button>
-    </div>
-</header>
-<main id="home" class="content">
-    <div class="card">
-        <h1>Welcome to Ev0ze.dev</h1>
-        <p>
-            This will eventually act as my personal website as well as a spot for all my upcoming projects. <br>
-            <i>Coming soon! Stay Tuned!</i>
-        </p>
-    </div>
-    <div style="height: 800px;"></div>
-</main>
-<script src="script.js"></script>
-</body>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

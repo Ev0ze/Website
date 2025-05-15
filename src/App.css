@@ -1,0 +1,45 @@
+:root {
+  /* Mocha theme (dark) */
+  --mocha-bg: #1e1e2e;
+  --mocha-text: #cdd6f4;
+  --mocha-card: #313244;
+  --mocha-accent: #89b4fa;
+  
+  /* Latte theme (light) */
+  --latte-bg: #eff1f5;
+  --latte-text: #4c4f69;
+  --latte-card: #e6e9ef;
+  --latte-accent: #1e66f5;
+}
+
+.app {
+  min-height: 100vh;
+  transition: background-color 0.3s ease;
+}
+
+.app.mocha {
+  background-color: var(--mocha-bg);
+  color: var(--mocha-text);
+}
+
+.app.latte {
+  background-color: var(--latte-bg);
+  color: var(--latte-text);
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.card {
+  background-color: var(--mocha-card);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.app.latte .card {
+  background-color: var(--latte-card);
+} 

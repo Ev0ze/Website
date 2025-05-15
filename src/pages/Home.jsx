@@ -1,8 +1,6 @@
-import React from 'react';
-
-function Home() {
+const Home = () => {
   return (
-    <main id="home" className="content">
+    <div id="home" style={{ paddingTop: '80px' }}>
       <div className="card">
         <h1>Welcome to Ev0ze.dev</h1>
         <p>
@@ -11,8 +9,8 @@ function Home() {
         </p>
       </div>
       <div style={{ height: '800px' }}></div>
-    </main>
-  );
+    </div>
+  )
 }
 
-export default Home; 
+export default Home 

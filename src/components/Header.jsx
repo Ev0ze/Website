@@ -2,8 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Splitting from 'splitting';
 import 'splitting/dist/splitting.css';
+import './Header.css';
 
-function Header() {
+const Header = ({ onThemeSwitch }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [theme, setTheme] = useState('macchiato');
   const [isChanging, setIsChanging] = useState(false);
   const textRef = useRef(null);
@@ -198,6 +200,11 @@ function Header() {
     // Update state
     setTheme(nextTheme);
     
+    // Call the onThemeSwitch prop if it exists
+    if (onThemeSwitch) {
+      onThemeSwitch(nextTheme);
+    }
+    
     // Add animation class
     setIsChanging(true);
     // Remove animation class after animation completes
@@ -207,17 +214,19 @@ function Header() {
   };
 
   // Find current theme data
-  const currentTheme = themes.find(t => t.id === theme) || themes[2]; // Default to Macchiato
+  const currentThemeData = themes.find(t => t.id === theme) || themes[2]; // Default to Macchiato
 
   return (
     <header>
       <div className="nav-left">
-        <div className="dropdown">
-          <button className="dropbtn">Menu <span className="dropdown-icon">&#9662;</span></button>
+        <div className={`dropdown ${isMenuOpen ? 'active' : ''}`}>
+          <button className="dropbtn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            Menu <span className="dropdown-icon">&#9662;</span>
+          </button>
           <div className="dropdown-content">
             <Link to="/">Home</Link>
-            <Link to="/#projects">Projects</Link>
-            <Link to="/#about">About</Link>
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
             <Link to="/policy-tool">Policy Tool</Link>
             <Link to="/contact">Contact</Link>
           </div>
@@ -232,7 +241,7 @@ function Header() {
           onClick={cycleTheme} 
           className={`theme-btn ${isChanging ? 'changing' : ''}`}
         >
-          {currentTheme.emoji} {currentTheme.name}
+          {currentThemeData.emoji} {currentThemeData.name}
         </button>
       </div>
     </header>
